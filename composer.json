@@ -1,8 +1,7 @@
 {
-    "name": "fobiaweb/Debug",
+    "name": "fobiaweb/debug",
     "type": "library",
     "description": "Fobia Debug Component",
-    "keywords": [],
     "license": "MIT",
     "require": {
         "php": ">=5.3.0",
