@@ -6,12 +6,12 @@
  * @copyright  (c) 2013-2014, Dmitriy Tyurin
  */
 
-namespace Fobia\Debug;
+namespace Fobia\Debug\Dbg;
 
 /**
  * Log class
  */
-class Log
+class DDLog
 {
 
     private static $_messages = array();
