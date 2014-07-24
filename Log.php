@@ -8,8 +8,9 @@
 
 namespace Fobia\Debug;
 
-use \Psr\Log\LogLevel;
-use \Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
+use Psr\Log\LoggerInterface;
+
 /**
  * Log class
  *
@@ -36,7 +37,8 @@ class Log
     public static function getLogger()
     {
         if(!self::$logger) {
-            self::$logger = new \Fobia\Debug\MemoryLogger();
+            self::$logger = new \Fobia\Debug\ArrayLogger();
+            self::$logger->level = 600;
         }
         return self::$logger;
     }
