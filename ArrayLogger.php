@@ -28,7 +28,7 @@ class ArrayLogger extends AbstractLogger
     {
         $this->level = $level;
 
-        $cli = defined('IS_CLI') ? IS_CLI : true;
+        $cli = defined('IS_CLI') ? IS_CLI : !isset($_SERVER['HTTP_HOST']);
         if ( $cli && !defined('TEST_BOOTSTRAP_FILE') && !@$_ENV['no_stderr']) {
             $this->handle = fopen('php://stderr', 'a+');
         }

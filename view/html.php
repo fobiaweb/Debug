@@ -5,87 +5,12 @@
  * @author     Dmitriy Tyurin <fobia3d@gmail.com>
  * @copyright  Copyright (c) 2014 Dmitriy Tyurin
  */
+
+
+
 ?>
 <style>
-    #ac-logger-switch {
-        position: fixed;
-        background: #FF0000;
-        top: 5px;
-        right: 5px;
-        width: 30px;
-        height: 15px;
-        z-index: 1000001;
-        cursor: pointer;
-    }
-    #ac-logger {
-        position: fixed;
-        top: 0px;
-        left: 0px;
-        z-index: 1000000;
-        font: 9px Tahoma, Geneva, sans-serif;
-        border-bottom: 3px solid black;
-        height: 60%;
-        width: 100%;
-        display: none;
-    }
-    #ac-logger div.content {
-        background: #CCC;
-        overflow: auto;
-        width: 100%;
-        height: 100%;
-    }
-    #ac-logger table tr {
-        font-family: monospace;
-        font-size: 11px;
-    }
-    #ac-logger thead {
-        background: #666;
-    }
-    #ac-logger thead tr th {
-        vertical-align: top;
-        white-space: pre;
-        font-weight: bold;
-        text-align: left;
-    }
-    #ac-logger thead tr td {
-        vertical-align: top;
-        text-align: left;
-    }
-    #ac-logger tr .number {
-        color: #888a85;
-    }
-    #ac-logger tr .time {
-        color: #f57900;
-    }
-    #ac-logger tr .category {
-        color: #4e9a06;
-    }
-    #ac-logger tr .level {
-        color: #578ed5;
-        /* color: #3465a4; */
-    }
-    #ac-logger tr .messag {
-        color: #888a85;
-    }
-    #ac-logger tr.error {
-        background: #ffb3b3;
-    }
-    #ac-logger tr.warning {
-        background: #e9d5ab;
-    }
-    #ac-logger tr.notice {
-        background: #dff0d8;
-    }
-    #ac-logger tr.info {
-        background: #d9edf7;
-    }
-    #ac-logger tr.dump {
-        /* background-color: rgb(163, 163, 163); */
-    }
-    .debug-cvardumper .string {color: #C00; }
-    .debug-cvardumper .comment {color: #888A85; }
-    .debug-cvardumper .keyword {color: #4E9A06; }
-    .debug-cvardumper .default {color: #3465A4; }
+<?php echo file_get_contents(__DIR__ . '/style.css'); ?>
 </style>
 
 
