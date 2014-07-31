@@ -37,8 +37,11 @@ class Log
     public static function getLogger()
     {
         if(!self::$logger) {
-            self::$logger = new \Fobia\Debug\ArrayLogger();
-            self::$logger->level = 600;
+            $level = 0;
+            if (array_key_exists('debug.level', $_ENV)) {
+                $level = (int) $_ENV['debug.level'];
+            }
+            self::$logger = new \Fobia\Debug\ArrayLogger($level);
         }
         return self::$logger;
     }

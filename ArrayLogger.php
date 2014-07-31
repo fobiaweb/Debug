@@ -24,21 +24,24 @@ class ArrayLogger extends AbstractLogger
     protected $display;
     protected $handle;
 
-    public function __construct()
+    public function __construct($level = 0)
     {
-        if ( IS_CLI && !defined('TEST_BOOTSTRAP_FILE') && !@$_ENV['no_stderr']) {
+        $this->level = $level;
+
+        $cli = defined('IS_CLI') ? IS_CLI : true;
+        if ( $cli && !defined('TEST_BOOTSTRAP_FILE') && !@$_ENV['no_stderr']) {
             $this->handle = fopen('php://stderr', 'a+');
         }
     }
 
     public function log($level, $message, array $context = array())
     {
-        if (self::getLevelCode($level) > $this->level) {
+        if (self::getLevelCode($level) < $this->level) {
             return;
         }
 
         $row = array(
-            'time'    => sprintf("%6s", substr(microtime(true) - TIME_START, 0, 6)),
+            'time'    => sprintf("%6s", substr(microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"], 0, 6)),
             'memory'  => sprintf("%6s", round(memory_get_usage() / 1024 / 1024, 2) . 'MB'),
             'level'   => $level,
             'message' => $message,
@@ -46,7 +49,6 @@ class ArrayLogger extends AbstractLogger
         );
 
         $this->list[] = $row;
-        // error_log($message, 3, LOGS_DIR . '/error.log');
 
         if ($this->handle) {
             /*
@@ -97,34 +99,16 @@ class ArrayLogger extends AbstractLogger
     public static function getLevelCode($level)
     {
         switch ($level) {
-            case LogLevel::EMERGENCY:
-                $l = 600;
-                break;
-            case LogLevel::ALERT:
-                $l = 550;
-                break;
-            case LogLevel::CRITICAL:
-                $l = 500;
-                break;
-            case LogLevel::ERROR:
-                $l = 400;
-                break;
-            case LogLevel::WARNING:
-                $l = 300;
-                break;
-            case LogLevel::NOTICE:
-                $l = 250;
-                break;
-            case LogLevel::INFO:
-                $l = 200;
-                break;
-            case LogLevel::DEBUG:
-                $l = 100;
-                break;
-            default:
-                $l = 50;
+            case LogLevel::EMERGENCY: return 600;
+            case LogLevel::ALERT:     return 550;
+            case LogLevel::CRITICAL:  return 500;
+            case LogLevel::ERROR:     return 400;
+            case LogLevel::WARNING:   return 300;
+            case LogLevel::NOTICE:    return 250;
+            case LogLevel::INFO:      return 200;
+            case LogLevel::DEBUG:     return 100;
+            default:                  return 50;
         }
-        return $l;
     }
 
     public static function getLevelName($code)

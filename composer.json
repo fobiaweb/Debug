@@ -4,7 +4,9 @@
     "description": "Fobia Debug Component",
     "license": "MIT",
     "require": {
-        "php": ">=5.3.0",
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
         "psr/log": "~1.0"
     },
     "suggest": {
