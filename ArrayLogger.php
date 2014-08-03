@@ -146,7 +146,7 @@ class ArrayLogger extends AbstractLogger
         if ($this->handle || !  $this->enableRender) {
             return;
         }
-        $file = __DIR__ . '/view/' . $format . '.php';
+        $file = __DIR__ . '/view/bootstrap/' . $format . '.php';
         if (!file_exists($file)) {
             trigger_error("Файл не найден '{$file}'", E_USER_WARNING);
         }
